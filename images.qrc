@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>images/20230821222448.jpg</file>
+        <file>images/20230821221929.jpg</file>
+        <file>../../icon/VideoPlayer/play.png</file>
+        <file>../../icon/VideoPlayer/mute.png</file>
+        <file>../../icon/VideoPlayer/stop.png</file>
+        <file>../../icon/VideoPlayer/volumn.png</file>
+        <file>../../icon/VideoPlayer/pause.png</file>
+        <file>../../icon/VideoPlayer/open.png</file>
+    </qresource>
+</RCC>
