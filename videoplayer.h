@@ -15,7 +15,8 @@
 #include <QListWidget>
 #include <QListWidgetItem>
 #include <QMap>
-//#include "myvideoitem.h"
+#include "streamplayer.h"
+#include "test.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -32,6 +33,8 @@ public:
     ~VideoPlayer();
 
 private:
+    StreamPlayer *streamPlayer;
+    Test *test;
     Ui::VideoPlayer *ui;
 
     void InitVideo();
@@ -53,6 +56,9 @@ private:
     QListWidget *listWidget;
 
 private slots:
+    void on_liveStreamButton_clicked();
+    void showVideoPlayer();
+
     void onStateChanged(QMediaPlayer::PlaybackState state);
     void getduration(qint64 playtime);
 

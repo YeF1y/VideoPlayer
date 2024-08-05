@@ -5,6 +5,7 @@
 VideoPlayer::VideoPlayer(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::VideoPlayer)
+    , streamPlayer(nullptr)
 {
     ui->setupUi(this);
     InitVideo();
@@ -21,7 +22,6 @@ VideoPlayer::VideoPlayer(QWidget *parent)
     connect(ui->horizontalSlider_Position,&QAbstractSlider::sliderReleased,this,&VideoPlayer::slider_progress_released);
 
     connect(player,SIGNAL(playbackStateChanged(QMediaPlayer::PlaybackState)),this,SLOT(onStateChanged(QMediaPlayer::PlaybackState)));
-
 }
 
 //初始化视图
@@ -85,6 +85,9 @@ void VideoPlayer::InitVideo(){
 VideoPlayer::~VideoPlayer()
 {
     delete ui;
+    if (streamPlayer) {
+        delete streamPlayer;
+    }
 }
 
 //点击 打开文件 槽函数
@@ -220,4 +223,27 @@ void VideoPlayer::getduration(qint64 playtime)
     QString alltime = timemanager.formatTime(playtime);
     QString nowtime = timemanager.formatTime(player->position());
     ui->label_Ratio->setText(nowtime + " / " + alltime);
+}
+
+void VideoPlayer::on_liveStreamButton_clicked() {
+    // test = new Test;
+    // test->show();
+    // this->hide();
+    qDebug() << "Live Stream button clicked";
+    if (!streamPlayer) {
+        qDebug() << "Creating StreamPlayer instance";
+        streamPlayer = new StreamPlayer;
+        connect(streamPlayer, &StreamPlayer::returnToVideoPlayer, this, &VideoPlayer::showVideoPlayer);
+    }
+    qDebug() << "Showing StreamPlayer";
+    streamPlayer->show();
+    this->hide();
+}
+
+void VideoPlayer::showVideoPlayer()
+{
+    this->show();
+    if (streamPlayer) {
+        streamPlayer->hide();
+    }
 }

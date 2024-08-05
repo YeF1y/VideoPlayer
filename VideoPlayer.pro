@@ -12,10 +12,12 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
+    streamplayer.cpp \
     timemanager.cpp \
     videoplayer.cpp
 
 HEADERS += \
+    streamplayer.h \
     timemanager.h \
     videoplayer.h
 

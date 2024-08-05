@@ -1,11 +1,12 @@
-#include "videoplayer.h"
-
 #include <QApplication>
+#include "videoplayer.h"
+#include "streamplayer.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     VideoPlayer w;
+    //StreamPlayer w;
     w.show();
     return a.exec();
 }
